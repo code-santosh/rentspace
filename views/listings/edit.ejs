@@ -1,0 +1,57 @@
+<% layout("/layouts/boilerPlate") %>
+
+    <body>
+        <div class="new-form-container mt-5">
+            <h3 class="mb-4">Edit Your Listing</h3>
+            <form method="post" action="/listings/<%=currListing._id%>?_method=put"
+                class="p-4 shadow rounded bg-white needs-validation" novalidate enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" value="<%=currListing.title%>" name="listing[title]" id="title"
+                        class="form-control" required>
+                    <div class="invalid-feedback">Please enter a title</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" id="description" class="form-control"
+                        required><%=currListing.description%></textarea>
+                    <div class="invalid-feedback">Please enter a short description</div>
+                </div>
+
+                <div class="row align-items-center">
+                    <div class="img-thumbnail rounded float-start col-6">
+                        Origianl Image <img src="<%= originalImageUrl %>">
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label for="imageUrl" class="form-label">Upload Image</label>
+                        <input type="file" name="listing[image][url]" id="imageUrl" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" value="<%=currListing.price%>" name="listing[price]" id="price"
+                        class="form-control" required>
+                    <div class="invalid-feedback">Choose a suitable price</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" value="<%=currListing.location%>" name="listing[location]" id="location"
+                        class="form-control" required>
+                    <div class="invalid-feedback">Please enter your location</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="country" class="form-label"></label>
+                    <input type="text" value="<%=currListing.country%>" name="listing[country]" id="country"
+                        class="form-control" required>
+                    <div class="invalid-feedback">Please enter your country</div>
+                </div>
+
+                <button type="submit" class="btn btn-create">Save</button>
+            </form>
+        </div>
+    </body>
