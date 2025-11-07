@@ -30,7 +30,7 @@
                         <%=currListing.country%>
                     </p>
 
-                    <% if(currUser && currListing.owner._id.equals(currUser._id)){ %>
+                    <% if(currUser && currListing.owner.equals(currUser._id)){ %>
                         <div class="d-flex gap-2 mt-3 align-items-stretch">
                             <a href="/listings/<%= currListing._id %>/edit" class="btn btn-create h-100">Edit</a>
                             <form method="post" action="/listings/<%= currListing._id %>?_method=delete"
@@ -94,11 +94,12 @@
                                         <p class="card-text">
                                             <%= review.comment %>
                                         </p>
-
-                                        <form class="mb-3" method="post"
-                                            action="/listings/<%=currListing._id%>/reviews/<%=review._id%>?_method=delete">
-                                            <button class="btn btn-outline-secondary btn-sm">delete</button>
-                                        </form>
+                                        <% if(currUser && review.author.equals(currUser._id)){ %>
+                                            <form class="mb-3" method="post"
+                                                action="/listings/<%=currListing._id%>/reviews/<%=review._id%>?_method=delete">
+                                                <button class="btn btn-outline-secondary btn-sm">delete</button>
+                                            </form>
+                                            <%}%>
                                     </div>
                                 </div>
                             </div>
